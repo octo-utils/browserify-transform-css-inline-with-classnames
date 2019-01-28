@@ -1,0 +1,15 @@
+.some-class {
+  width: 100px;
+
+  :global { // classNames after :global would not be rename
+    .should-be-ignore {
+      width: 100px;
+    }
+  }
+}
+
+:global { // classNames after :global would not be rename
+  .should-be-ignore-too {
+    width: 100px;
+  }
+}

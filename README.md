@@ -17,7 +17,8 @@ classNames without :global declaration would be rename by appending hash string.
 
 ### Example
 
-```
+**build script**
+```javascript
 const b = browserify({
   entries: "./src/entry.js"
 }).transform(transformScss, {
@@ -26,7 +27,7 @@ const b = browserify({
 ```
 
 **./src/entry.js**
-```
+```javascript
 const { cssText, classNamesMapping } = require('./style.css');
 
 console.log(cssText); // ".some-style {\n width: 100px;\n }"
@@ -34,7 +35,7 @@ console.log(classNamesMapping); // { 'some-style': 'style-css_cb2afaabb_some-sty
 ```
 
 **./src/style.css**
-```
+```css
 .some-style {
   width: 100px;
 }

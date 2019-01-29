@@ -1,5 +1,7 @@
 # browserify-transform-css-inline-with-classnames
 
+[![npm](https://nodei.co/npm/browserify-transform-css-inline-with-classnames.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/browserify-transform-css-inline-with-classnames)
+
 a [browserify](https://github.com/browserify/browserify) transform for importing css as module with `cssText` and `classNamesMapping`.
 
 classNames without :global declaration would be rename by appending hash string.

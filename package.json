@@ -1,6 +1,6 @@
 {
   "name": "browserify-transform-css-inline-with-classnames",
-  "version": "1.0.01",
+  "version": "1.0.02",
   "description": "",
   "main": "index.js",
   "scripts": {

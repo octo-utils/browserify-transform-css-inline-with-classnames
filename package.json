@@ -1,5 +1,5 @@
 {
-  "name": "browserify-import-css-inline-with-classnames",
+  "name": "browserify-transform-css-inline-with-classnames",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

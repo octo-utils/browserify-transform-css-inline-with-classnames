@@ -6,14 +6,20 @@ classNames without :global declaration would be rename by appending hash string.
 
 ### Options
 
-- `reader`:`Function | (content, filename) => Promise<string>`:
+- **reader**: `Function | (content, filename) => Promise<string>`:
     reader function for pre-solve the target style file. if you want to using this transform with `less` or `sass` or other extension language of CSS. you can provide a customize reader function by this option. compile the content in to normal css string.
 
-- `postcssPlugins`:`Function | Function[]`:
+- **postcssPlugins**: `Function | Function[]`:
     postcss plugin list for the internal postcss. if you are using postcss plugin like `autoprefixer`, simply put it here.
 
-- `rename`:`Function | (className, filename) => string`:
+- **rename**: `Function | (className, filename) => string`:
     custom rename function for renaming the classNames. default using [lib/rename-default.js](lib/rename-default.js) to rename the classNames.
+
+- **jsModuleTemplate**: `Function | (cssText, classNamesMapping) => string`: customize translated javascript module. default
+    ```javascript
+    exports.cssText = <cssText>
+    exports.classNamesMapping = <classNamesMapping>
+    ```
 
 ### Example
 

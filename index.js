@@ -9,7 +9,7 @@ const postcssPluginRenameClassnames = require("./lib/post-css-plugin-rename-clas
 
 function _noopReader(content, filename) { return content.toString() }
 
-function _moduleTemplate(css, classNamesMapping) {
+function _moduleTemplateDefault(css, classNamesMapping) {
   return `
 exports.cssText = ${JSON.stringify(css)};
 exports.classNamesMapping = ${JSON.stringify(classNamesMapping)};
@@ -21,7 +21,8 @@ module.exports = function(filename, opts) {
   const {
     reader,
     postcssPlugins = [],
-    rename = renameDefault
+    rename = renameDefault,
+    jsModuleTemplate = _moduleTemplateDefault
   } = opts;
 
   const reader_ = {
@@ -46,7 +47,7 @@ module.exports = function(filename, opts) {
         .then(result => {
           const { css, classNamesMapping } = result;
           // console.log(css, classNamesMapping);
-          next(null, _moduleTemplate(css, classNamesMapping))
+          next(null, jsModuleTemplate(css, classNamesMapping))
         })
     });
   })

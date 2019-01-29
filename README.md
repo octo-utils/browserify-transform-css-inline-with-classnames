@@ -8,16 +8,21 @@ classNames without :global declaration would be rename by appending hash string.
 
 ### Options
 
-- **reader**: `Object<stringGlob, Function | (content, filename) => Promise<string>>`:
+- **reader**: `Object<stringGlob, Function | (content, filename, emitFile) => Promise<string>>`:
     reader function for pre-solve the target style file. if you want to using this transform with `less` or `sass` or other extension language of CSS. you can provide a customize reader function by this option. compile the content in to normal css string. Example
     ```javascript
     {
-      "*.less": function lessReader(content, filename) {
+      "*.less": function lessReader(content, filename, emitFile) {
          // compile content ...
          // return css string
       }
     }
     ```
+
+    **reader function parameters**
+    - `[0]`: Buffer, target file content buffer.
+    - `[1]`: string, target file absolute file path.
+    - `[2]`: function: (filepath) => void 0, emitFile for adding dependencies files for watchify, [See watchify document](https://github.com/browserify/watchify#working-with-browserify-transforms).
 
 - **postcssPlugins**: `Function | Function[]`:
     postcss plugin list for the internal postcss. if you are using postcss plugin like `autoprefixer`, simply put it here.

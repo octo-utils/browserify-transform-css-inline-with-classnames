@@ -1,10 +1,14 @@
 {
   "name": "browserify-transform-css-inline-with-classnames",
-  "version": "1.0.0",
+  "version": "1.0.01",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octo-utils/browserify-transform-css-inline-with-classnames.git"
   },
   "author": "",
   "license": "ISC",

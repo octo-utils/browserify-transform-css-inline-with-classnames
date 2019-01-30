@@ -48,7 +48,7 @@ module.exports = function(filename, opts) {
         .then(result => {
           const { css, classNamesMapping } = result;
           // console.log(css, classNamesMapping);
-          next(null, jsModuleTemplate(css, classNamesMapping))
+          next(null, jsModuleTemplate(css, classNamesMapping, filename))
         })
     });
   })

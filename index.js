@@ -50,6 +50,6 @@ module.exports = function(filename, opts) {
           // console.log(css, classNamesMapping);
           next(null, jsModuleTemplate(css, classNamesMapping, filename))
         })
-    });
+    }).call(next);
   })
 }

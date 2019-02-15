@@ -8,6 +8,10 @@
   }
 }
 
+.some-class:not(.disabled) {
+  background-color: gray;
+}
+
 :global { // classNames after :global would not be rename
   html, body {
     margin: 0;

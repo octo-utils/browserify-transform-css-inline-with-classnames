@@ -37,7 +37,7 @@ describe('test', function () {
     b.bundle().on("end", _ => {
       done();
     }).pipe(through((buf, _, next) => {
-      // console.log(buf.toString())
+      console.log(buf.toString())
       next();
     }));
   })

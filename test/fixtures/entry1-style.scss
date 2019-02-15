@@ -9,6 +9,12 @@
 }
 
 :global { // classNames after :global would not be rename
+  html, body {
+    margin: 0;
+  }
+}
+
+:global { // classNames after :global would not be rename
   .should-be-ignore-too {
     width: 100px;
   }

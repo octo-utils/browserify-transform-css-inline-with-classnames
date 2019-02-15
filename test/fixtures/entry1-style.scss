@@ -4,6 +4,18 @@
   :global { // classNames after :global would not be rename
     .should-be-ignore {
       width: 100px;
+
+      :local {
+        .should-not-be-ignore-too {
+          width: 99px;
+        }
+      }
+    }
+
+    :local {
+      .should-not-be-ignore {
+        width: 99px;
+      }
     }
   }
 }

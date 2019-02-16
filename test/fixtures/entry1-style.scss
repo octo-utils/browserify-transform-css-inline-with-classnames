@@ -1,6 +1,21 @@
 .some-class {
   width: 100px;
 
+  &:global(.suffix-should-be-ignore) {
+    height: 100%;
+  }
+
+  &:global {
+    &.suffix-should-be-ignore-too {
+      width: 101%;
+      &:local {
+        &.suffix-should-be-reset {
+          width: 102%;
+        }
+      }
+    }
+  }
+
   :global { // classNames after :global would not be rename
     .should-be-ignore {
       width: 100px;

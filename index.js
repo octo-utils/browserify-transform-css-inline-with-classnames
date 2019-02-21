@@ -38,18 +38,26 @@ module.exports = function(filename, opts) {
 
   if (typeof matchedReader !== "function") { return through(); }
 
+  let merged = Buffer.from("");
+
   return through(function(buf, _, next) {
+    merged = Buffer.concat([merged, buf]);
+    next(null);
+  }, function (flush) {
     const emitFile = filepath => this.emit("file", filepath);
-    matchedReader(buf, filename, emitFile).then(content => {
-      postcss([...postcssPlugins, postcssPluginRenameClassnames({
+    matchedReader(merged, filename, emitFile).then(content => {
+      return postcss([...postcssPlugins, postcssPluginRenameClassnames({
         rename: className => rename(className, filename)
       })])
         .process(content, { from: filename })
         .then(result => {
           const { css, classNamesMapping } = result;
-          // console.log(css, classNamesMapping);
-          next(null, jsModuleTemplate(css, classNamesMapping, filename))
-        })
-    }).catch(next);
+          this.push(jsModuleTemplate(css, classNamesMapping, filename));
+          flush();
+        });
+    }, error => {
+      this.emit("error", error);
+      flush();
+    });
   })
 }

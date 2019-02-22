@@ -9,7 +9,7 @@
     &.suffix-should-be-ignore-too {
       width: 101%;
       &:local {
-        &.suffix-should-be-reset {
+        &.suffix-should-be-renamed {
           width: 102%;
         }
       }

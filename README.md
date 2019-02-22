@@ -57,8 +57,13 @@ console.log(classNamesMapping); // { 'some-style': 'style-css_cb2afaabb_some-sty
 
 **./src/style.css**
 ```css
-.some-style {
-  width: 100px;
+:local {
+  .some-style-will-be-rename {
+    width: 100px;
+  }
+}
+.some-style-will-not-be-rename {
+  width: 101px
 }
 ```
 

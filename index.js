@@ -30,7 +30,7 @@ module.exports = function(filename, opts) {
     ...reader,
   };
 
-  const matchedKey = Object.keys(reader).find(pattern => minimatch(filename, pattern, {
+  const matchedKey = Object.keys(reader_).find(pattern => minimatch(filename, pattern, {
     matchBase: true
   }));
 

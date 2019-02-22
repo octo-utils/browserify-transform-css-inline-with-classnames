@@ -7,7 +7,7 @@ const minimatch = require("minimatch")
 const renameDefault = require("./lib/rename-default")
 const postcssPluginRenameClassnames = require("./lib/post-css-plugin-rename-classnames")
 
-function _noopReader(content, _, __) { return content.toString() }
+function _noopReader(content, _, __) { return Promise.resolve(content.toString()) }
 
 function _moduleTemplateDefault(css, classNamesMapping) {
   return `

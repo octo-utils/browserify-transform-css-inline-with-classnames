@@ -14,6 +14,10 @@
         }
       }
     }
+
+    .child-rule-should-be-ignore-too {
+      width: 103%;
+    }
   }
 
   :global { // classNames after :global would not be rename

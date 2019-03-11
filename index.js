@@ -43,21 +43,17 @@ module.exports = function(filename, opts) {
   return through(function(buf, _, next) {
     merged = Buffer.concat([merged, buf]);
     next(null);
-  }, function (flush) {
+  }, async function (flush) {
     const emitFile = filepath => this.emit("file", filepath);
-    matchedReader(merged, filename, emitFile).then(content => {
-      return postcss([...postcssPlugins, postcssPluginRenameClassnames({
-        rename: className => rename(className, filename)
-      })])
-        .process(content, { from: filename })
-        .then(result => {
-          const { css, classNamesMapping } = result;
-          this.push(jsModuleTemplate(css, classNamesMapping, filename));
-          flush();
-        });
-    }, error => {
-      this.emit("error", error);
-      flush();
-    });
+    const contentRead = await matchedReader(merged, filename, emitFile);
+
+    const result = postcss([...postcssPlugins, postcssPluginRenameClassnames({
+      rename: className => rename(className, filename)
+    })])
+      .process(contentRead, { from: filename });
+
+    const { css, classNamesMapping } = result;
+    this.push(jsModuleTemplate(css, classNamesMapping, filename));
+    flush();
   })
 }

@@ -46,12 +46,10 @@ module.exports = function(filename, opts) {
   }, async function (flush) {
     const emitFile = filepath => this.emit("file", filepath);
     const contentRead = await matchedReader(merged, filename, emitFile);
-
-    const result = postcss([...postcssPlugins, postcssPluginRenameClassnames({
+    const result = await postcss([postcssPluginRenameClassnames({
       rename: className => rename(className, filename)
-    })])
+    }), ...postcssPlugins])
       .process(contentRead, { from: filename });
-
     const { css, classNamesMapping } = result;
     this.push(jsModuleTemplate(css, classNamesMapping, filename));
     flush();
